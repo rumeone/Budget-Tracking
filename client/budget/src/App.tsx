@@ -1,9 +1,12 @@
 import React from 'react';
+import {Header} from "./components/Header/Header.";
+import {AuthPage} from "./components/AuthPage/AuthPage";
 
 function App() {
   return (
     <div className="App">
-      hELLO
+      <Header/>
+        <AuthPage type='login'/>
     </div>
   );
 }
