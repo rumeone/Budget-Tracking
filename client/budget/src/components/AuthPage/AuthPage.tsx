@@ -1,3 +1,5 @@
+import './styles.css';
+import {Link} from "react-router-dom";
 export const AuthPage = ({type}: {type:'login' | 'registration'}) => {
     const currentAuthTitle = type === 'login' ? 'Войти' : 'Регистрация';
     return(
@@ -16,6 +18,16 @@ export const AuthPage = ({type}: {type:'login' | 'registration'}) => {
                     {currentAuthTitle}
                 </button>
             </form>
+            {type === 'login' ?
+                <div>
+                <span className='question-text'>Еще нет аккаунта?</span>
+                    <Link to={'/registration'}>Зарегестрироваться</Link>
+            </div>
+                : <div>
+                    <span>Уже есть аккаунт?</span>
+                    <Link to={'/login'}>Войти</Link>
+                </div>
+            }
         </div>
     )
 }
