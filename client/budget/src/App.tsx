@@ -4,13 +4,17 @@ import {AuthPage} from "./components/AuthPage/AuthPage";
 import {Route, BrowserRouter as Router, Routes, Navigate} from "react-router-dom";
 import {useStore} from "effector-react";
 import {$auth} from "./context/auth";
+import {$alert} from "./context/alert";
+import {Alert} from "./components/Alert/Alert";
 
 function App() {
   const isLoggedIn = useStore($auth);
+  const alert = useStore($alert);
   console.log(isLoggedIn);
   return (
     <div className="App">
       <Header/>
+      {alert.alertText && <Alert props={alert}/>}
         <Router>
           <Routes>
             <Route path='/' element={isLoggedIn ? <Navigate to='/costs'/> : <Navigate to='login'/>}/>

@@ -2,7 +2,10 @@ import {createStore, createDomain} from "effector";
 
 const auth = createDomain();
 
-const setAuth = auth.createEvent<boolean>();
+export const setAuth = auth.createEvent<boolean>();
+export const setUsername = auth.createEvent<string>();
 export const $auth = createStore<boolean>(false)
     .on(setAuth, (_,value ) => value);
 
+export const $username = createStore<string>('')
+    .on(setUsername, (_,value ) => value);
