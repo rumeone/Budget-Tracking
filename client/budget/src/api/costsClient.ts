@@ -2,6 +2,9 @@ import {createEffect} from "effector";
 import {IBaseEffectArgs, ICreateCost, IRefreshToken} from "../types";
 import api from './axiosClient'
 import {removeUser} from "../utils/auth";
+import {handleAxiosError} from "../utils/errors";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 export const createCostFx = createEffect(async ({url, cost, token}: ICreateCost) => {
     try {
         const {data} = await api.post(url, {...cost}, {headers: {'Authorization': `Bearer ${token}`}});
@@ -18,7 +21,7 @@ export const getCostsFx = createEffect(async ({url, token}: IBaseEffectArgs) => 
 
         return data;
     } catch (e) {
-        console.log(e);
+        handleAxiosError(e, {type: 'get'});
     }
 });
 
