@@ -14,12 +14,25 @@ export interface ISpinnerProps {
 }
 
 export interface ICostsHeaderProps {
-    costs: ICosts[];
+    costs: ICost[];
 }
 
-export interface ICosts {
+export interface ICost {
     text: string;
     price: number;
     date: Date | string;
     _id?: string | number;
+}
+
+export interface IBaseEffectArgs {
+    url: string;
+    token:string;
+}
+
+export interface ICreateCost extends IBaseEffectArgs{
+    cost: ICost;
+
+}
+export interface IRefreshToken extends IBaseEffectArgs{
+    username: string;
 }
